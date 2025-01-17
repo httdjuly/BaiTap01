@@ -1,6 +1,7 @@
 package com.example.baitap01;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,11 +14,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText Input;
     private TextView Output;
     private Button btn;
+    private Button btn2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +43,34 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Vui lòng nhập chuỗi", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
+        btn2 = findViewById(R.id.button2);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Integer> arrayNumber = new ArrayList<>();
+                ArrayList<Integer> arrayOddNumber = new ArrayList<>();
+                ArrayList<Integer> arrayEvenNumber = new ArrayList<>();
+                Random random = new Random();
+
+                for (int i = 0; i < 20; i++) {
+                    int randomNumber = random.nextInt(100);
+                    arrayNumber.add(randomNumber);
+                }
+                Log.d("RandomNumbers", "arrayNumber: " + arrayNumber.toString());
+                for (int number : arrayNumber) {
+                    if (number % 2 == 0) {
+                        arrayEvenNumber.add(number); // Số chẵn
+                    } else {
+                        arrayOddNumber.add(number); // Số lẻ
+                    }
+                }
+                Log.d("EvenNumbers", "arrayEvenNumber: " + arrayEvenNumber.toString());
+                Log.d("OddNumbers", "arrayOddNumber: " + arrayOddNumber.toString());
+            }
+        });
+
     }
 
 
